@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Web.Models.ChannelModel>
+
+@{
+    ViewData["Title"] = "List of Channels";
+}
+
+<h2>List of Channels</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                Name: @item.c.Name | Season: @item.c.Season | @Html.ActionLink("Details", "Index", "Archive", new { season = item.c.Season, channel = item.c.Name, guild = item.g.Name, forceupdate = false}, null)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,52 @@
+﻿@model ChannelModel
+@{
+	string title = "#" + Model.c.Name + "  @" + Model.g.Name;
+	ViewData["Title"] = title;
+	List<Message> l = Model.c.Messages;
+	l.Sort(new MessageComparer());
+	//TODO: Get Something
+	string guildicon = Model.g.IconURL;
+}
+
+<!--Thanks to https://github.com/Tyrrrz/DiscordChatExporter/-->
+
+<!--TODO: Add Dark/Light Switch-->
+<link rel="stylesheet" href="~/css/darkDiscord.css" />
+<!--<link rel="stylesheet" href="~/css/lightDiscord.css" />-->
+
+<div id="info">
+	<div class="info-left">
+		<img class="guild-icon" src="@guildicon" />
+	</div>
+	<div class="info-right">
+		<div class="guild-name">@Model.g.Name</div>
+		<div class="channel-name">@Model.c.Name</div>
+		<div class="misc">@l.Count</div>
+	</div>
+</div>
+<div id="log">
+	@{
+		foreach (var v in l)
+		{
+			<div class="msg">
+				<div class="msg-left">
+					<img class="msg-avatar materialboxed" src="@v.Author.IconURL" />
+				</div>
+				<div class="msg-right">
+					<!--Maybe Add #1234 in author name-->
+					<span class="msg-user" title="@v.Author.Name">@v.Author.Name</span>
+					<span class="msg-date">@DateTimeOffset.FromUnixTimeSeconds(v.Timestamp).ToString("u")</span>
+					<div class="msg-content">
+						@Html.Raw(HTMLFormater.FormatDiscord(v.Content))
+					</div>
+					<!--
+					TODO: For Merging 2 Messages together, do this
+					<div class="msg-content">
+						<b>These are the most important roles, <span class="mention">@@everyone</span></b><br /><br /><div class="pre">INNOCENTS<br /></div><br />All roles in this category share one goal; kill every member that is part of the Werewolf team.<br /><br /><b>Innocents</b><br />This is the basic role of the game. Find out who the werewolves are, and vote for them to kill them off!<br /><br /><b>Bakers</b><br />Bakers know who all the other bakers are. They are all innocent.<br /><br /><b>The runner</b><br />The runner will escape death if the werewolves attempt to eat him. This only works once.<br /><br /><b>Fortune teller</b><br />Each night, the fortune teller can see the role of one player.<br /><br /><b>Huntress</b><br />When the huntress dies, she can choose to kill another player.<br /><br /><b>Cupid</b><br />The first night, Cupid will select a <i>lover</i>. Cupid and the lover can only win together; if one gets eliminated, they both die. <i>(That&#39;s how much they love each other)</i><br />If the lover is a werewolf, they&#39;ll have to kill off everybody else.<br /><br /><b>Cult member</b><br />At night, the cult members vote to kill an outsider.<br /><br /><b>Cult Leader</b><br />This player has the same rights as the cult members. If they die, all <i>cult members</i> become normal civilians.<br /><br /><b>Cursed Civilian</b><br />If this player gets eaten by the werewolves, he will turn into a werewolf.<br /><br /><b>Crowd Seeker</b><br />The crowd seeker can give three names each night. He will learn their roles (in a random order).<br /><br /><div class="pre">WEREWOLVES<br /></div><br /><b>Werewolf</b><br />You are a werewolf! It is your job to kill everyone who is not a werewolf.<br /><br /><b>White Werewolf</b><br />This werewolf wins if they are the only player alive. They will act like a normal werewolf, but will also try to eliminate all werewolves.<br /><br /><b>Warlock</b><br />The warlock is a corrupted fortune teller. The role works the same as the fortune teller, but the warlock wins when the werewolves win.<br /><br /><div class="pre">FLUTE PLAYER<br /></div><br /><br /><b>Flute Player</b><br />Each night, the flute player chooses two players to become flute victims. Once everyone but him is a flute victim, the flute player wins the game. Flute victims keep their roles, but they know who the other victims are.<span class="msg-edited" title="19-Nov-17 08:50 ">(edited)</span>
+					</div>
+					-->
+				</div>
+			</div>
+		}
+	}
+</div>
