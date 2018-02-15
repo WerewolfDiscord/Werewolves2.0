@@ -6,11 +6,41 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="2.0.0-preview1-final" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.1" />
+	<DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.Development.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Account\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus.CommandsNext\DSharpPlus.CommandsNext.csproj" />
+    <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus.Interactivity\DSharpPlus.Interactivity.csproj" />
+    <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus.Rest\DSharpPlus.Rest.csproj" />
+    <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus.WebSocket.WebSocket4NetCore\DSharpPlus.WebSocket.WebSocket4NetCore.csproj" />
+    <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus\DSharpPlus.csproj" />
   </ItemGroup>
 
 </Project>

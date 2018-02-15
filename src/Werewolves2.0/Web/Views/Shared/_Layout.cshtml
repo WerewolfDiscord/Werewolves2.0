@@ -25,19 +25,16 @@
 			<a href="#!" class="brand-logo">Logo</a>
 			<ul class="right hide-on-med-and-down">
 				<li>@Html.ActionLink("Home", "Index", "Home")</li>
-				<!-- Dropdown Trigger -->
-				<li>
-					<a class="dropdown-button" href="#!" data-activates="dropdownSeasons" style="">Seasons<i class="material-icons right">arrow_drop_down</i></a>
-					<ul id="dropdownSeasons" class="dropdown-content" style="width: 137.3px; position: absolute; top: 0px; left: 925.617px; display: none; opacity: 1;">
-						<li>@Html.ActionLink("All", "ListAll", "Archive", new { guild = "Werewolves" }, null)</li>
-						<li>@Html.ActionLink("Unspecified Season", "List", "Archive", new { guild = "Werewolves", season = -1 }, null)</li>
-						<li>@Html.ActionLink("Season 1", "List", "Archive", new { guild = "Werewolves", season = 1 }, null)</li>
-						<!-- <li class="divider"></li> -->
-						<li>@Html.ActionLink("Season 2", "List", "Archive", new { guild = "Werewolves", season = 2 }, null)</li>
-						<li>@Html.ActionLink("Season 3", "List", "Archive", new { guild = "Werewolves", season = 3 }, null)</li>
-						<li>@Html.ActionLink("Season 4", "List", "Archive", new { guild = "Werewolves", season = 4 }, null)</li>
-					</ul>
-				</li>
+				@{ 
+					if (User.Identity.IsAuthenticated)
+					{
+						<li>Welcome @User.Identity.Name</li>
+					}
+					else
+					{
+							<li> @Html.ActionLink("Login", "AuthStart", "Account");</li>
+					}
+				}
 			</ul>
 		</div>
 	</nav>
