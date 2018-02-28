@@ -63,7 +63,7 @@ namespace Web.Bot
                 WriteCenter("(Please fill in the config.json that was generated.)", 2);
                 WriteCenter($"({path})");
                 WriteCenter("Press any key to exit..", 1);
-                Console.SetCursorPosition(0, 0);
+                //Console.SetCursorPosition(0, 0); Doesnt Work here
                 Console.ReadKey();
 
                 #endregion
@@ -122,6 +122,8 @@ namespace Web.Bot
                 Services = dep
             });
 
+            RegisterCustomConverters(ref _cnext);
+
             _cnext.RegisterCommands<Main>();
             // _cnext.RegisterCommands<DSPlus.Examples.ExampleInteractiveCommands>();
 
@@ -130,9 +132,12 @@ namespace Web.Bot
             _cnext.CommandErrored += _cnext_CommandErrored;
             _client.DebugLogger.LogMessageReceived += DebugLogger_LogMessageReceived;
             _cnext.CommandExecuted += _cnext_CommandExecuted;
-			_client.UpdateCurrentUserAsync("2.0");
 			//_client.UpdateStatusAsync(new DiscordActivity("for " + _config.Prefix + "help", ActivityType.Watching), UserStatus.Online);
 			//Console.Write(Default3);
+        }
+
+        private void RegisterCustomConverters(ref CommandsNextExtension cnext)
+        {
         }
 
         public void Dispose()
@@ -173,6 +178,7 @@ namespace Web.Bot
         public async Task RunAsync()
         {
             await _client.ConnectAsync();
+            await _client.UpdateCurrentUserAsync("2.0");
             await WaitForCancellationAsync();
         }
 

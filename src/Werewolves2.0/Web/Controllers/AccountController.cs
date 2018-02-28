@@ -92,6 +92,12 @@ namespace Web.Controllers
 					throw new Exception("Welp?");
 			}
 
+			//Clear Access_Token Claims
+			await userManager.RemoveClaimsAsync(userToLogin,
+				(await userManager.GetClaimsAsync(userToLogin))
+				.Where(x => x.Type == "access_token")
+				);
+
 			await userManager.AddClaimsAsync(userToLogin, new Claim[]
 			{
 					new Claim(type: "access_token", value: client.Token),
@@ -109,8 +115,7 @@ namespace Web.Controllers
 				await member.GrantRoleAsync(guild.Roles.First(x => x.Permissions == Permissions.Administrator));
 			}
 
-			//by now we shoud be on the guild?
-
+			//by now we are on the Guild.
 
 			client.Dispose();
 			return RedirectToAction("Index", "Home");

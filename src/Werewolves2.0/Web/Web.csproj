@@ -29,6 +29,9 @@
     <Content Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="BotData\config.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -41,6 +44,7 @@
     <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus.Rest\DSharpPlus.Rest.csproj" />
     <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus.WebSocket.WebSocket4NetCore\DSharpPlus.WebSocket.WebSocket4NetCore.csproj" />
     <ProjectReference Include="..\..\..\..\DSharpPlus\DSharpPlus\DSharpPlus.csproj" />
+    <ProjectReference Include="..\..\Bot\Bot.csproj" />
   </ItemGroup>
 
 </Project>
